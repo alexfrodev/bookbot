@@ -1,28 +1,14 @@
 def main():
     text = get_text()
-    words = word_count(text)
-    chars_dict = character_dict(text)
+    num_words = get_word_count(text)
+    chars_dict = get_character_dict(text)
     alpha_dict = is_alpha(chars_dict)
-    list = chars_list(alpha_dict)
+    sorted_list = chars_list(alpha_dict)
+    
     print("----- Begin report of book 'frankenstein' -----")
-    print(f"{words} words found in the document")
-    print(list)
+    print(f"{num_words} words found in the document")
+    print(sorted_list)
     print("----- End report -----")
-
-
-def word_count(text):
-    words = len(text.split())
-    return words
-
-
-def character_dict(text):
-    character = {}
-    for c in text.lower():
-        if c in character:
-            character[c] += 1
-        else:
-            character[c] = 1
-    return character
 
 
 def is_alpha(chars_dict):
@@ -36,10 +22,22 @@ def is_alpha(chars_dict):
 
 
 def chars_list(alpha_dict):
-    #alpha_chars = is_alpha()
     new_list = [{key:value} for key, value in alpha_dict.items()]
     return new_list
 
+
+def get_character_dict(text):
+    character = {}
+    for c in text.lower():
+        if c in character:
+            character[c] += 1
+        else:
+            character[c] = 1
+    return character
+
+
+def get_word_count(text):
+    return len(text.split())
 
 
 def get_text():
